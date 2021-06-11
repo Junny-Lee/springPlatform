@@ -1,0 +1,20 @@
+package com.junny.firstproject;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/hello") // this will be preappended to every route
+public class HomeController {
+        @RequestMapping("/")
+        public String hello() {
+                return "Hello World again!";
+        }
+        
+        @RequestMapping("/world")
+        public String world() {
+                return "Class level annotations are cool too!";
+        }
+        
+        
+}
