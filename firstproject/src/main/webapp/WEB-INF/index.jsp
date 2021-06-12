@@ -12,6 +12,7 @@
 </head>
 <body>
 	<h1>Hello World</h1>
-	<c:out value="${2+2}"/>
+	<%-- <c:out value="${2+2}"/> --%>
+	<c:out value="${dojoName}"/>
 </body>
 </html>

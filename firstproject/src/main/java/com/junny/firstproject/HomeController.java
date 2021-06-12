@@ -1,14 +1,16 @@
 package com.junny.firstproject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller // allows me to respond with a template
 public class HomeController {
-	@RequestMapping("/")
-	public String home() {
-		return "index.jsp";
-	}
+	@RequestMapping("/index") // go see index.jsp (View)
+    public String index(Model model) { // passing data to the view is very easy
+        model.addAttribute("dojoName", "Burbank"); 
+        return "index.jsp";
+    }
 }
 
 
