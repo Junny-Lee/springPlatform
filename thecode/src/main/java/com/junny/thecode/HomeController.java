@@ -14,7 +14,7 @@ public class HomeController {
 		return "index.jsp";
 	}
 	@RequestMapping(value="/check", method=RequestMethod.POST)
-	public String home(@RequestParam(value="code") String code, Model model, RedirectAttributes redirectAttributes) {
+	public String home(@RequestParam(value="code") String code, RedirectAttributes redirectAttributes) {
 		if (code.equals("bushido")) { // .equals() not ==
 			return "redirect:/code";
 		}
