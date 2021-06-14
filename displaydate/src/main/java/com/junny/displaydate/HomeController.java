@@ -15,7 +15,6 @@ public class HomeController {
 	}
 	@RequestMapping("/date")
 	public String date(Model model) {
-//		Date date= new java.util.Date();
 		String date = new SimpleDateFormat("EEEEE', the 'd' of 'MMMMM', 'y").format(new Date());
 		model.addAttribute("date", date);
 		return "date.jsp";
