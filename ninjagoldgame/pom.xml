@@ -8,12 +8,12 @@
 		<version>2.5.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.junny.dojosurvery</groupId>
-	<artifactId>dojosurvery</artifactId>
+	<groupId>com.junny.ninjagoldgame</groupId>
+	<artifactId>ninjagoldgame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>dojosurvery</name>
-	<description>dojo survery assignment</description>
+	<name>ninjagoldgame</name>
+	<description>ninja gold game assignment</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -43,14 +43,14 @@
         </dependency>
         <!-- for bootstrap -->
         <dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap</artifactId>
-		    <version>4.5.0</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.5.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.webjars.bower</groupId>
-		    <artifactId>jquery</artifactId>
-		    <version>3.5.1</version>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
 		</dependency>
 	</dependencies>
 
