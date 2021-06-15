@@ -13,31 +13,31 @@
 	<title>Forms</title>
 </head>
 <body>
-	<form method="POST" action="/result">
-	  <div class="form-group">
+	<form method="POST" action="/processResult">
+	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="name">Your name:</label>
-	    <input type="text" class="form-control" id="text">
+	    <input name="name" type="text" class="form-control" id="text">
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="location">Dojo Location:</label>
-	    <select class="form-control" id="location">
+	    <select name="location" class="form-control" id="location">
 	      <option>San Jose</option>
 	      <option>Remote</option>
 	      <option>Irvine</option>
 	      <option>Los Angeles</option>
 	    </select>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="language">Favorite Language:</label>
-	    <select class="form-control" id="language">
+	    <select name="language" class="form-control" id="language">
 	      <option>Python</option>
 	      <option>Java</option>
 	      <option>Javascript</option>
 	    </select>
 	  </div>
-	  <div class="form-group">
+	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="comment">Comments (optional):</label>
-	    <textarea class="form-control" id="comment" rows="3"></textarea>
+	    <textarea name="comment" class="form-control" id="comment" rows="3"></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
