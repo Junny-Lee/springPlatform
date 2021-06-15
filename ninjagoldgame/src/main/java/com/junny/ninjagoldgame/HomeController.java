@@ -30,21 +30,21 @@ public class HomeController {
 			Random r = new Random();
 			int amount = r.nextInt(10) + 10;
 			session.setAttribute("gold", (Integer) session.getAttribute("gold") + amount);
-			arrayOfActivities.add("You entered a Farm and earned " + amount + " gold. (" + time + ")");
+			arrayOfActivities.add("<p class=\"green\">You entered a Farm and earned " + amount + " gold. (" + time + ") </p>");
 			session.setAttribute("activityArr", arrayOfActivities);
 //			System.out.println(arrayOfActivities);
 		} else if (location.equals("cave")) {
 			Random r = new Random();
 			int amount = r.nextInt(5) + 5;
 			session.setAttribute("gold", (Integer) session.getAttribute("gold") + amount);
-			arrayOfActivities.add("You entered a Cave and earned " + amount + " gold. (" + time + ")");
+			arrayOfActivities.add("<p class=\"green\">You entered a Cave and earned " + amount + " gold. (" + time + ") </p>");
 			session.setAttribute("activityArr", arrayOfActivities);
 //			System.out.println(arrayOfActivities);
 		} else if (location.equals("house")) {
 			Random r = new Random();
 			int amount = r.nextInt(3) + 2;
 			session.setAttribute("gold", (Integer) session.getAttribute("gold") + amount);
-			arrayOfActivities.add("You entered a House and earned " + amount + " gold. (" + time + ")");
+			arrayOfActivities.add("<p class=\"green\">You entered a House and earned " + amount + " gold. (" + time + ") </p>");
 			session.setAttribute("activityArr", arrayOfActivities);
 //			System.out.println(arrayOfActivities);
 		} else {
