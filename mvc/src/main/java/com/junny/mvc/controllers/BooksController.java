@@ -35,7 +35,7 @@ public class BooksController {
      return "/books/new.jsp";
  }
  
- @RequestMapping(value="/books", method=RequestMethod.POST)
+ @RequestMapping(value="/books", method=RequestMethod.POST) // NEW
  public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
      if (result.hasErrors()) {
          return "/books/new.jsp";
@@ -45,11 +45,29 @@ public class BooksController {
      }
  }
  
- @RequestMapping("/books/{id}")
+ @RequestMapping("/books/{id}") // READ ONE
  public String show(Model model, @PathVariable("id") Long id) {
 	 Book book = bookService.findBook(id);
 	 model.addAttribute("book", book);
 	 return "/books/show.jsp";
  }
+ 
+ @RequestMapping("/books/{id}/edit") // display jsp file 
+ public String edit(@PathVariable("id") Long id, Model model) {
+     Book book = bookService.findBook(id);
+     model.addAttribute("book", book);
+     return "/books/edit.jsp";
+ }
+ 
+ @RequestMapping(value="/books/{id}", method=RequestMethod.PUT) // actually doing the put
+ public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+     if (result.hasErrors()) {
+         return "/books/edit.jsp";
+     } else {
+         bookService.updateBook(book);
+         return "redirect:/books";
+     }
+ }
+ 
 }
 
