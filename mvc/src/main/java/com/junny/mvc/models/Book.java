@@ -21,7 +21,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // attributes/variables of the class
-    @NotNull
+    @NotNull // you have to provide the value
     @Size(min = 5, max = 200)
     private String title;
     @NotNull
@@ -49,10 +49,16 @@ public class Book {
         this.numberOfPages = pages;
     }
     
-    @PrePersist
+    @PrePersist // Date exists before we create it
     protected void onCreate(){
         this.createdAt = new Date();
     }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+    
+    // getters and setters
     public Long getId() {
 		return id;
 	}
@@ -95,9 +101,5 @@ public class Book {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	@PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
 }
 

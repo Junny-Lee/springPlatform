@@ -1,3 +1,5 @@
+// backend
+// functions that exist within the book repository
 package com.junny.mvc.services;
 
 import java.util.Optional;
@@ -22,7 +24,7 @@ public class BookService {
     }
     // creates a book
     public Book createBook(Book b) {
-        return bookRepository.save(b);
+        return bookRepository.save(b); // save() fn from extending from Crud
     }
     // retrieves a book
     public Book findBook(Long id) {

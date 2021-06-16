@@ -1,3 +1,4 @@
+// middleman between the front and back end 
 package com.junny.mvc.controllers;
 
 import java.util.List;
@@ -13,24 +14,24 @@ import com.junny.mvc.services.BookService;
 
 @RestController
 public class BooksApi {
-    private final BookService bookService;
+    private final BookService bookService; // backend. think of it like a const variable (won't change)
     public BooksApi(BookService bookService){
         this.bookService = bookService;
     }
-    @RequestMapping("/api/books")
+    @RequestMapping("/api/books") // create routes
     public List<Book> index() {
-        return bookService.allBooks();
+        return bookService.allBooks(); // calling on functions from BookService.java (calling from back-end)
     }
     
     @RequestMapping(value="/api/books", method=RequestMethod.POST)
     public Book create(@RequestParam(value="title") String title, @RequestParam(value="description") String desc, @RequestParam(value="language") String lang, @RequestParam(value="pages") Integer numOfPages) {
-        Book book = new Book(title, desc, lang, numOfPages);
-        return bookService.createBook(book);
+        Book book = new Book(title, desc, lang, numOfPages); // creating/instantiating a new Book according to the Book Model
+        return bookService.createBook(book); // calling on functions from BookService.java (calling from back-end)
     }
     
     @RequestMapping("/api/books/{id}")
     public Book show(@PathVariable("id") Long id) {
-        Book book = bookService.findBook(id);
+        Book book = bookService.findBook(id); // calling on functions from BookService.java (calling from back-end)
         return book;
     }
 }

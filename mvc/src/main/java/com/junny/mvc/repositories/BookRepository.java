@@ -1,8 +1,10 @@
+// this gives us access to the DB
+// either GET or POST request (save info or grab info from DB)
 package com.junny.mvc.repositories;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository; // gives us access to a bunch of functionalities from the DB
 import org.springframework.stereotype.Repository;
 
 import com.junny.mvc.models.Book;
