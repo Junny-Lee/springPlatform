@@ -1,0 +1,20 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#navbar{
+	text-align: right;
+	margin: 5%;
+}
+#topTen{
+	margin: 5%;
+	padding: 2%;
+	outline: solid black 2px;
+}
+ul {
+  list-style-position: inside;
+  list-style-type: none;
+}
+#listItems{
+	display: flex;
+}

@@ -1,0 +1,12 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#navbar{
+	margin: 5%;
+	display: flex;
+	justify-content: right;
+}
+#newForm{
+	margin: 5%;
+}

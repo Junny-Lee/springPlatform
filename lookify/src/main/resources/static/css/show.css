@@ -1,0 +1,14 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#navbar{
+	margin: 5%;
+	text-align: right;
+}
+#body{
+	margin: 5%;
+}
+h4{
+	padding: 2%;
+}

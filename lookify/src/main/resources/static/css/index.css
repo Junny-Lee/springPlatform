@@ -1,0 +1,23 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#navbar{
+	margin: 5%;
+	display: flex;
+	justify-content: space-between;
+}
+#navbarLinks{
+	margin-top: auto;
+	display: flex;
+	justify-content: space-around;
+}
+#searchBar{
+	margin-top: auto;
+	display: flex;
+	justify-content: right;
+}
+#table{
+	outline: black solid 1px;
+	margin: 5%;
+}
