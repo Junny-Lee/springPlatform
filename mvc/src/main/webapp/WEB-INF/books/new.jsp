@@ -38,8 +38,8 @@
 	        <form:label path="numberOfPages">Pages</form:label>
 	        <form:errors path="numberOfPages"/>     
 	        <form:input type="number" path="numberOfPages"/>
-	    </p>    
-	    <input type="submit" value="Submit"/>
+	    </p>
+	    <button type="submit" class="btn btn-info">Submit</button>
 	</form:form>  
 </body>
 </html>

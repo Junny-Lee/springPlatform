@@ -18,13 +18,13 @@
 </head>
 <body>
 	<h1>All Books</h1>
-	<table>
+	<table class="table">
 	    <thead>
 	        <tr>
-	            <th>Title</th>
-	            <th>Description</th>
-	            <th>Language</th>
-	            <th>Number of Pages</th>
+	            <th scope="col">Title</th>
+	            <th scope="col">Description</th>
+	            <th scope="col">Language</th>
+	            <th scope="col">Number of Pages</th>
 	        </tr>
 	    </thead>
 	    <tbody>
