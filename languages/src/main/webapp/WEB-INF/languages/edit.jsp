@@ -14,15 +14,15 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/editStyle.css"> -->
 </head>
 <body>
 	<a href="/languages/${language.id}/delete">Delete</a> | <a href="/languages">Dashboard</a>
 	<form:form action="/languages/${language.id}" method="post" modelAttribute="language">
 		<input type="hidden" name="_method" value="put">
-		<form:errors path="name"/> <!-- put error messages at the top  -->
-		<form:errors path="creator"/>
-		<form:errors path="currentVersion"/>
+		<form:errors path="name"/><br> <!-- put error messages at the top  -->
+		<form:errors path="creator"/><br>
+		<form:errors path="currentVersion"/><br>
 	    <p>
 	        <form:label path="name">Name</form:label>
 	        <%-- <form:errors path="name"/> --%>

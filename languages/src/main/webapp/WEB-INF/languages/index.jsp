@@ -14,7 +14,7 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+<link rel="stylesheet" type="text/css" href="css/indexStyle.css">
 </head>
 <body>
 	<h3>All Languages</h3>
@@ -41,9 +41,9 @@
 	<hr>
 	<h3>New Language</h3>
 	<form:form action="/languages" method="post" modelAttribute="language">
-		<form:errors path="name"/> <!-- put error messages at the top  -->
-		<form:errors path="creator"/>
-		<form:errors path="currentVersion"/>
+		<form:errors id="errors" path="name"/> <!-- put error messages at the top  -->
+		<form:errors id="errors" path="creator"/>
+		<form:errors id="errors" path="currentVersion"/>
 	    <p>
 	        <form:label path="name">Name</form:label>
 	        <%-- <form:errors path="name"/> --%>
