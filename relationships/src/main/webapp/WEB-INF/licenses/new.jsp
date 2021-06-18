@@ -28,6 +28,7 @@
 		<div class="form-group w-50">
 			<form:label path="person">Person:</form:label> <!-- need path when using form: something -->
  			<form:select path="person" class="form-control">
+ 				<!-- <option value="" disabled selected>Please pick a Person!</option> -->
 				<c:forEach items="${persons}" var="person" varStatus="loop">
                          <form:option value="${person.id}">${person.firstName} ${person.lastName}</form:option>
            		</c:forEach>

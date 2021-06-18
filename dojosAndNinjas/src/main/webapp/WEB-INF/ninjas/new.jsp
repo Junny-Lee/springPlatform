@@ -17,6 +17,11 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/ninjas">Back to List of Ninjas</a>
+		</div>
+	</div>
 	<h3>New Ninja</h3>
 	<form:form action="/ninjas" method="post" modelAttribute="ninja" id="newForm">
 		<%-- <form:errors path="firstName"/>
@@ -24,6 +29,7 @@
 		<div class="form-group w-50">
 			<form:label path="dojo">Dojo:</form:label> <!-- need path when using form: something -->
  			<form:select path="dojo" class="form-control">
+ 				<option value="" disabled selected>Please pick a Dojo!</option>
 				<c:forEach items="${dojos}" var="dojo" varStatus="loop">
                          <form:option value="${dojo.id}">${dojo.name}</form:option>
            		</c:forEach>

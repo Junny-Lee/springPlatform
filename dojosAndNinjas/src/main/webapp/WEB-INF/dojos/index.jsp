@@ -17,6 +17,12 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/dojos/new">New Dojo&nbsp&nbsp|&nbsp&nbsp</a>
+			<a href="/ninjas">See List of Ninjas</a>
+		</div>
+	</div>
 	<h3>All Dojos</h3>
 	<div id="table">
 		<table class="table table-striped">
@@ -28,7 +34,7 @@
 		    <tbody>
 		        <c:forEach items="${dojos}" var="dojo">
 			        <tr>
-			            <td><c:out value="${dojo.name}"/></td>
+			            <td><a href="/dojos/${dojo.id}"><c:out value="${dojo.name}"/></a></td>
 		        </c:forEach>
 		    </tbody>
 		</table>

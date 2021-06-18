@@ -19,11 +19,10 @@
 <body>
  	<div id="navbar">
 		<div id="navbarLinks">			
-			<a href="/ninjas/new">New Ninja &nbsp&nbsp|&nbsp&nbsp</a>
-			<a href="/dojos">See List of Dojos</a>
+			<a href="/dojos">Back to List of Dojos</a>
 		</div>
 	</div>
-	<h3>All Ninjas</h3>
+	<h3><c:out value="${dojo.name} "/>Location Ninjas</h3>
 	<div id="table">
 		<table class="table table-striped">
 		    <thead>
@@ -31,16 +30,14 @@
 		            <th scope="col">First Name</th>
 		            <th scope="col">Last Name</th>
 		            <th scope="col">Age</th>
-		            <th scope="col">Dojo</th>
 		        </tr>
 		    </thead>
 		    <tbody>
-		        <c:forEach items="${ninjas}" var="ninja">
+		        <c:forEach items="${dojo.ninjas}" var="ninja">
 			        <tr>
 			            <td><c:out value="${ninja.firstName}"/></td>
 			            <td><c:out value="${ninja.lastName}"/></td>
 			            <td><c:out value="${ninja.age}"/></td>
-			            <td><c:out value="${ninja.dojo.name}"/></td>
 			        </tr>
 		        </c:forEach>
 		    </tbody>

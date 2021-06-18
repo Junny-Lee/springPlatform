@@ -13,13 +13,14 @@ import com.junny.dojosAndNinjas.services.NinjaService;
 
 @RestController
 public class NinjasApi {
- private final NinjaService ninjaService; // backend. think of it like a const variable (won't change)
+ private final NinjaService ninjaService;
+ 
  public NinjasApi(NinjaService ninjaService){
      this.ninjaService = ninjaService;
  }
- @RequestMapping("/api/ninjas") // create routes
+ @RequestMapping("/api/ninjas") 
  public List<Ninja> index() {
-     return ninjaService.allNinjas(); // calling on functions from NinjaService.java (calling from back-end)
+     return ninjaService.allNinjas(); 
  }
  
  @RequestMapping(value="/api/ninjas", method=RequestMethod.POST)

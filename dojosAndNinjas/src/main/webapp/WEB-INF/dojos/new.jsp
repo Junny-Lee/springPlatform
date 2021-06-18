@@ -17,11 +17,16 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/dojos">Back to List of Dojos</a>
+		</div>
+	</div>
 	<h3>New Dojo</h3>
 	<form:form action="/dojos" method="post" modelAttribute="dojo" id="newForm">
 		<form:errors path="name"/>
 	    <div class="mb-3 w-50">
-	        <form:label path="name" for="name" class="form-label">First Name</form:label>
+	        <form:label path="name" for="name" class="form-label">Name</form:label>
 	        <form:input path="name" type="text" class="form-control" id="name"/>
 	    </div>
 	    <button type="submit" class="btn btn-info">Create</button>

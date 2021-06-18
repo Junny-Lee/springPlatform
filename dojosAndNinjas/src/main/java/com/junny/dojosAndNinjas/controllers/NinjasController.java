@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.junny.dojosAndNinjas.models.Dojo;
 import com.junny.dojosAndNinjas.models.Ninja;
+import com.junny.dojosAndNinjas.services.DojoService;
 import com.junny.dojosAndNinjas.services.NinjaService;
 
 @Controller
 public class NinjasController {
 	 private final NinjaService ninjaService;
+	 private final DojoService dojoService;
 	 
-	 public NinjasController(NinjaService ninjaService) {
+	 public NinjasController(NinjaService ninjaService, DojoService dojoService) {
 	     this.ninjaService = ninjaService;
+	     this.dojoService = dojoService;
 	 }
 	 
 	 @RequestMapping("/ninjas") // READ ALL
@@ -31,7 +35,9 @@ public class NinjasController {
 	 }
 
 	 @RequestMapping("/ninjas/new") // CREATE
-	 public String newNinja(@ModelAttribute("ninja") Ninja ninja) {
+	 public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model model) {
+		 List<Dojo> dojos = dojoService.allDojos();
+		 model.addAttribute("dojos", dojos);
 	     return "/ninjas/new.jsp";
 	 }
 

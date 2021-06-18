@@ -47,7 +47,7 @@ public class LicensesController {
 	 @RequestMapping(value="/licenses", method=RequestMethod.POST) // NEW // long hand
 	 public String create(@Valid @ModelAttribute("license") License license, BindingResult result) {
 	     if (result.hasErrors()) {
-//	    	 System.out.println(result.getFieldErrors());
+//	    	 System.out.println(result.getFieldErrors()); // how to print what the error is
 	         return "/licenses/new.jsp";
 	     } else {
 	         licenseService.createLicense(license);
