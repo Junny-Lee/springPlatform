@@ -17,6 +17,11 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/persons">Back to List of Persons</a>
+		</div>
+	</div>
 	<h3>New Person</h3>
 	<form:form action="/persons" method="post" modelAttribute="person" id="newForm">
 		<form:errors path="firstName"/>

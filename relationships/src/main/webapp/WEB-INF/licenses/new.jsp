@@ -17,10 +17,14 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/licenses">Back to List of Licenses</a>
+		</div>
+	</div>
 	<h3>New License</h3>
 	<form:form action="/licenses" method="post" modelAttribute="license" id="newForm">
-		<%-- <form:errors path="state"/>
-		<form:errors path="expirationDate"/>  --%>
+		<form:errors path="state"/>
 		<div class="form-group w-50">
 			<form:label path="person">Person:</form:label> <!-- need path when using form: something -->
  			<form:select path="person" class="form-control">

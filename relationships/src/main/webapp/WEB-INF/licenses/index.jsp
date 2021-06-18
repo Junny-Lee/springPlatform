@@ -21,7 +21,8 @@
 <body>
  	<div id="navbar">
 		<div id="navbarLinks">			
-			<a href="/persons">Go to Table of Persons</a>
+			<a href="/persons">Go to Table of Persons &nbsp&nbsp</a>
+			<a href="/licenses/new">New License</a>
 		</div>
 	</div>
 	<h3>All Licenses</h3>

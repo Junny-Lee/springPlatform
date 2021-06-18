@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,6 +27,7 @@ public class License {
     private String number;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date expirationDate;
+    @Size(min=2, max=2, message="State needs to be 2 letters!")
     private String state;
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
