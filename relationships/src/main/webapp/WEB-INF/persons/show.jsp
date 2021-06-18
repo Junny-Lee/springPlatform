@@ -3,12 +3,14 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!-- bootstrap -->
 <%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form"%>
+<!-- to format date -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Persons Index</title>
+<title>Insert title here</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
@@ -17,27 +19,14 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
- 	<div id="navbar">
-		<div id="navbarLinks">			
-			<a href="/licenses">Go to Table of Licenses</a>
-		</div>
+	<div id="navbar">
+		<a href="/persons">Back to Persons List</a>
 	</div>
-	<h3>All Persons</h3>
-	<div id="table">
-		<table class="table table-striped">
-		    <thead>
-		        <tr>
-		            <th scope="col">Name</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <c:forEach items="${persons}" var="person">
-			        <tr>
-			            <td><a href="/persons/${person.id}"><c:out value="${person.firstName} ${person.lastName}"/></a></td>
-			        </tr>
-		        </c:forEach>
-		    </tbody>
-		</table>
+	<div id="body">
+		<h3><c:out value="${person.firstName} ${person.lastName}"/></h3>
+		<p>License Number: <c:out value="${person.license.id}"/></p>
+		<p>State: <c:out value="${person.license.state}"/></p>
+		<p>Expiration Date: <fmt:formatDate value="${person.license.expirationDate}" pattern="MM/dd/yyyy"/></p>
 	</div>
 </body>
 </html>
