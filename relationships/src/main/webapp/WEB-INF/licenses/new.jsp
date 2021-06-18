@@ -21,19 +21,13 @@
 	<form:form action="/licenses" method="post" modelAttribute="license" id="newForm">
 		<%-- <form:errors path="state"/>
 		<form:errors path="expirationDate"/>  --%>
-		<div class="form-group">
-			<label for="sel1">Person:</label>
-			<!-- <select name="person" class="form-control" id="person"> -->
+		<div class="form-group w-50">
+			<form:label path="person">Person:</form:label> <!-- need path when using form: something -->
  			<form:select path="person" class="form-control">
 				<c:forEach items="${persons}" var="person" varStatus="loop">
-                         <option>${person.firstName} ${person.lastName}</option>
+                         <form:option value="${person.id}">${person.firstName} ${person.lastName}</form:option>
            		</c:forEach>
 		  	</form:select>
-<%-- 		  	<form:select path="person" class="form-control">
-				<c:forEach items="${persons}" var="person" varStatus="loop">
-                         <form:option ]>${person.firstName} ${person.lastName}</form:option>
-           		</c:forEach>
-		  	</form:select> --%>
 		</div>
 	    <div class="mb-3 w-50">
 	        <form:label path="state" for="state" class="form-label">State</form:label>

@@ -38,10 +38,8 @@ public class LicensesController {
 	 // get request
 	 @RequestMapping("/licenses/new") // CREATE
 	 public String newLicense(@ModelAttribute("license") License license, Model model) {
-	 //public String newLicense(Model model) {
 		 List<Person> persons = personService.allPersons();
 		 model.addAttribute("persons", persons);
-		 //model.addAttribute("license", new License()); // not needed because of the @modelAttribute annotation
 	     return "/licenses/new.jsp";
 	 }
 	 
@@ -49,8 +47,10 @@ public class LicensesController {
 	 @RequestMapping(value="/licenses", method=RequestMethod.POST) // NEW // long hand
 	 public String create(@Valid @ModelAttribute("license") License license, BindingResult result) {
 	     if (result.hasErrors()) {
+	    	 System.out.println("errors!!!!");
 	         return "/licenses/new.jsp";
 	     } else {
+	    	 System.out.println(license.toString());
 	    	 //license.setPerson(null); // capture the person chosen from the FORM input here!!! 
 	         licenseService.createLicense(license);
 	         return "redirect:/licenses";

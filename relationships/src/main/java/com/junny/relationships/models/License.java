@@ -24,7 +24,7 @@ public class License {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String number;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date expirationDate;
     private String state;
     @Column(updatable=false)
@@ -42,7 +42,13 @@ public class License {
     	this.state = state;
     }
     
-    @PrePersist // Date exists before we create it
+    @Override
+	public String toString() {
+		return "License [id=" + id + ", number=" + number + ", expirationDate=" + expirationDate + ", state=" + state
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", person=" + person + "]";
+	}
+    
+	@PrePersist // Date exists before we create it
     protected void onCreate(){
         this.createdAt = new Date();
     }
