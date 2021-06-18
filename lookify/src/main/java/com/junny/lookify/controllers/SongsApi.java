@@ -39,8 +39,8 @@ public class SongsApi {
  @RequestMapping(value="/api/songs/{id}", method=RequestMethod.PUT)
  public Song update(@PathVariable("id") Long id, 
  		@RequestParam(value="title") String title, 
- 		@RequestParam(value="artist") String artist, 
- 		@RequestParam(value="rating") Integer rating) {
+ 		@RequestParam(value="artistription") String artist, 
+ 		@RequestParam(value="pages") Integer rating) {
      Song song = songService.updateSong(id, title, artist, rating);
      return song;
  }
