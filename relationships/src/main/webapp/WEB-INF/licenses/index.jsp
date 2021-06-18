@@ -34,7 +34,7 @@
 			            <td><c:out value="${license.number}"/></td>
 			            <td><c:out value="${license.expirationDate}"/></td>
 			            <td><c:out value="${license.state}"/></td>
-			            <td><c:out value="${license.person}"/></td>
+			            <td><c:out value="${license.person.firstName}"/></td>
 			        </tr>
 		        </c:forEach>
 		    </tbody>

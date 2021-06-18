@@ -25,6 +25,7 @@
 		            <th scope="col">First Name</th>
 		            <th scope="col">Last Name</th>
 		            <th scope="col">Age</th>
+		            <th scope="col">Dojo</th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -33,6 +34,7 @@
 			            <td><c:out value="${ninja.firstName}"/></td>
 			            <td><c:out value="${ninja.lastName}"/></td>
 			            <td><c:out value="${ninja.age}"/></td>
+			            <td><c:out value="${ninja.dojo}"/></td>
 			        </tr>
 		        </c:forEach>
 		    </tbody>
