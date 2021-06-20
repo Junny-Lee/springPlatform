@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.junny.productsAndCategories.models.Category;
+import com.junny.productsAndCategories.models.Product;
 import com.junny.productsAndCategories.repositories.CategoryRepository;
 
 @Service
@@ -20,6 +21,12 @@ public class CategoryService {
  public List<Category> allCategories() {
      return categoryRepository.findAll(); // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#reference 
  }
+ 
+ // this is NEW!!!! from a new JPA Query in the Repository:
+ public List<Category> notMatchedCategories(Product p) {
+	 return categoryRepository.findByProductsNotContains(p);
+ }
+ 
  // creates a category
  public Category createCategory(Category c) {
      return categoryRepository.save(c); // save() fn from extending from Crud

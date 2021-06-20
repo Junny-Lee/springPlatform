@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.junny.productsAndCategories.models.Category;
+import com.junny.productsAndCategories.models.Product;
 import com.junny.productsAndCategories.services.CategoryService;
+import com.junny.productsAndCategories.services.ProductService;
 
 @Controller
 public class CategoriesController {
 	 private final CategoryService categoryService;
+	 private final ProductService productService;
 	 
-	 public CategoriesController(CategoryService categoryService) {
+	 public CategoriesController(CategoryService categoryService, ProductService productService) {
 	     this.categoryService = categoryService;
+	     this.productService = productService;
 	 }
 	 
 	 @RequestMapping("/categories") // READ ALL
@@ -45,10 +50,25 @@ public class CategoriesController {
 	     }
 	 }
 	 
+	 // added this method 
+	 // adds additional category to existing product
+	 @RequestMapping(value="/categories/{id}", method=RequestMethod.POST)
+	 public String addProduct(@PathVariable("id") Long id,
+			 					@RequestParam("products") Long prodId ) {
+		 Category category = categoryService.findCategory(id);
+		 Product product = productService.findProduct(prodId);
+		 category.getProducts().add(product);
+		 categoryService.createCategory(category);
+		 return "redirect:/categories/" + category.getId();	// look at this!!!!!!
+	 }	 
+	 
+	 
 	 @RequestMapping("/categories/{id}") // READ ONE
 	 public String show(Model model, @PathVariable("id") Long id) {
 		 Category category = categoryService.findCategory(id);
+		 List<Product> availableProd = productService.notMatchedProducts(category);
 		 model.addAttribute("category", category);
+		 model.addAttribute("availableProd", availableProd);
 		 return "/categories/show.jsp";
 	 }
 	 

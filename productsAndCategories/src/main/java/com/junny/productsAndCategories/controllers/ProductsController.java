@@ -65,9 +65,9 @@ public class ProductsController {
 	 @RequestMapping("/products/{id}") // READ ONE
 	 public String show(Model model, @PathVariable("id") Long id) {
 		 Product product = productService.findProduct(id);
-		 List<Category> categories = categoryService.allCategories();
-		 model.addAttribute("categories", categories);
+		 List<Category> availableCat = categoryService.notMatchedCategories(product); // look at this line!!!! this is part of what allows us to get a list of categories that's not already associated with the prodcut 
 		 model.addAttribute("product", product);
+		 model.addAttribute("availableCat", availableCat);
 		 return "/products/show.jsp";
 	 }
 	 

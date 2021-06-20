@@ -16,7 +16,7 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+<link rel="stylesheet" type="text/css" href="/css/products/show.css">
 </head>
 <body>
  	<div id="navbar">
@@ -39,7 +39,7 @@
 				<form:label path="categories"><h4>Add Category:</h4></form:label> <!-- need path when using form: something -->
 	 			<form:select path="categories" class="form-control" multiple="false"> 
 	 				<option value="" disabled selected>Please pick a Category to Add!</option>
-					<c:forEach items="${categories}" var="category" varStatus="loop">
+					<c:forEach items="${availableCat}" var="category" varStatus="loop">
 	                         <form:option value="${category.id}">${category.name}</form:option>
 	           		</c:forEach>
 			  	</form:select>
