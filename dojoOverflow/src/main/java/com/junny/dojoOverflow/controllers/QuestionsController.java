@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.junny.dojoOverflow.models.Answer;
 import com.junny.dojoOverflow.models.Question;
+import com.junny.dojoOverflow.services.AnswerService;
 import com.junny.dojoOverflow.services.QuestionService;
 
 @Controller
 public class QuestionsController {
 	 private final QuestionService questionService;
+	 private final AnswerService answerService;
 	 
-	 public QuestionsController(QuestionService questionService) {
-	     this.questionService = questionService;;
+	 public QuestionsController(QuestionService questionService, AnswerService answerService) {
+	     this.questionService = questionService;
+	     this.answerService = answerService;
 	 }
 	 
 	 @RequestMapping("/")
@@ -55,6 +59,7 @@ public class QuestionsController {
 	 public String show(Model model, @PathVariable("id") Long id) {
 		 Question question = questionService.findQuestion(id);
 		 model.addAttribute("question", question);
+		 model.addAttribute("newAnswer", new Answer()); // reason for modelAttribute="answer" in show.jsp
 		 return "/questions/show.jsp";
 	 }
 	 
@@ -65,13 +70,23 @@ public class QuestionsController {
 	     return "/questions/edit.jsp";
 	 }
 	 
-	 @RequestMapping(value="/questions/{id}", method=RequestMethod.PUT) // actually doing the put
-	 public String update(@Valid @ModelAttribute("question") Question question, BindingResult result) {
+	 //@RequestMapping(value="/questions/{id}", method=RequestMethod.POST) // actually doing the put
+	 @RequestMapping(value="/questions/answer", method=RequestMethod.POST) 
+	 public String update(@Valid @ModelAttribute("newAnswer") Answer answer, BindingResult result,
+			 			@RequestParam("questionId") Long questionId,
+			 			Model model) { // look back!!!
 	     if (result.hasErrors()) {
-	         return "/questions/edit.jsp";
-	     } else {
+	    	 model.addAttribute("question", questionService.findQuestion(questionId));
+	         return "/questions/show.jsp";
+	     } else { // create linkage
+	    	 Question question = questionService.findQuestion(questionId);
+	    	 answer.setQuestion(question); // set the question
+	         Answer newAnswer = answerService.createAnswer(answer);
+	         List<Answer> answers = question.getAnswers();
+	         answers.add(newAnswer);
+	         question.setAnswers(answers);
 	         questionService.updateQuestion(question);
-	         return "redirect:/questions";
+	         return "redirect:/questions/" + questionId;
 	     }
 	 }
 	 
@@ -79,6 +94,9 @@ public class QuestionsController {
 	 public String destroy(@PathVariable("id") Long id) {
 	     questionService.deleteQuestion(id);
 	     return "redirect:/questions";
-	 }
+	 } 
  
 }
+
+
+

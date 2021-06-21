@@ -39,6 +39,7 @@
 			            <td><a href="/products/${product.id}"><c:out value="${product.name}"/></a></td>
 			            <td><c:out value="${product.description}"/></td>
 			            <td><c:out value="${product.price}"/></td>
+			        </tr>
 		        </c:forEach>
 		    </tbody>
 		</table>

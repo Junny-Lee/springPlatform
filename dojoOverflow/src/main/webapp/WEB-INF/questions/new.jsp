@@ -24,10 +24,10 @@
 	</div>
 	<h3>What is your question?</h3>
 	<form:form action="/questions" method="post" modelAttribute="question" id="newForm"> <!-- look at q -->
+		<form:errors path="myQuestion"/>
 		<%-- <form:errors path="tags"/> --%>
 	    <div class="mb-3 w-50">
 	        <form:label path="myQuestion" class="form-label">Question</form:label>
-			<form:errors path="myQuestion"/>
 	        <form:input path="myQuestion" class="form-control" id="myQuestion"/>
 	    </div>
 <%-- 	    <div class="mb-3 w-50">

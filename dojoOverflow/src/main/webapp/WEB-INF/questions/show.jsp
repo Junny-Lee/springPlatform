@@ -14,9 +14,44 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+<link rel="stylesheet" type="text/css" href="/css/questions/show.css">
 </head>
 <body>
-
+ 	<div id="navbar">
+		<div id="navbarLinks">			
+			<a href="/questions">Back to Question List</a>
+		</div>
+	</div>
+	<h3><c:out value="${question.myQuestion} "/></h3>
+	<div>
+		<p>Tags: &nbsp<c:out value="${question.tags}"></c:out></p>
+	</div>
+	<div id="body">
+		<div id="table">
+			<table class="table table-striped">
+			    <thead>
+			        <tr>
+			            <th scope="col">Answers:</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <c:forEach items="${question.answers}" var="answer">
+				        <tr>
+				            <td><a href="/questions/${question.id}"><c:out value="${answer.answer}"/></a></td>
+				        </tr>
+			        </c:forEach>
+			    </tbody>
+			</table>
+		</div>
+		<form:form action="/questions/answer" method="post" modelAttribute="newAnswer" id="newForm"> <!-- this was question id before -->
+			<form:errors path="answer"></form:errors>
+			<input type="hidden" name="questionId" value="${question.id}"/> <!-- look back!!!!! -->
+			<div class="form-group w-100">
+				<form:label path="answer"><h4>Add your answer:</h4></form:label> <!-- need path when using form: something -->
+			  	<form:textarea path="answer" class="form-control"/>
+			  	<button type="submit" class="btn btn-info">Answer it!</button>
+			</div>
+		</form:form>
+	</div>
 </body>
 </html>
