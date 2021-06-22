@@ -13,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.junny.authentication.models.User;
 import com.junny.authentication.services.UserService;
+import com.junny.authentication.validator.UserValidator;
 
 @Controller
 public class LoginController {
 	 private final UserService userService;
+	 private final UserValidator userValidator;
  
-	 public LoginController(UserService userService) {
-	     this.userService = userService;
-	 }
+	 public LoginController(UserService userService, UserValidator userValidator) {
+	        this.userService = userService;
+	        this.userValidator = userValidator;
+	    }
 	 
 	 @RequestMapping("/registration")
 	 public String registerForm(@ModelAttribute("user") User user) {
@@ -35,6 +38,7 @@ public class LoginController {
 	 public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 		 // if result has errors, return the registration page (don't worry about validations just now)
 	     // else, save the user in the database, save the user id in session, and redirect them to the /home route
+		 userValidator.validate(user, result);
 		 if(result.hasErrors()) {
 			 return "registrationPage.jsp";
 		 }

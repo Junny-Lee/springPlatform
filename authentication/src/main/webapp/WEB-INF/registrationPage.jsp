@@ -34,7 +34,9 @@
             <form:label path="passwordConfirmation">Password Confirmation:</form:label>
             <form:password path="passwordConfirmation"/>
         </p>
-        <input type="submit" value="Register!"/>
+        <button type="submit" class="btn btn-info">Register</button>
     </form:form>
+    <h3>Already have an account?</h3>
+    <a href="/login">Login</a>
 </body>
 </html>
