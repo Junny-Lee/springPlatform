@@ -14,16 +14,15 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+<link rel="stylesheet" type="text/css" href="/css/homePage.css">
 </head>
 <body>
- 	<div id="navbar">
-		<div id="navbarLinks">			
-			<a href="/logout">Logout</a>
-		</div>
+ 	<div id="navbar">		
+		<h2 id="welcome">Welcome, <c:out value="${user.firstName}" /></h2>
+		<a href="/logout">Logout</a>
+
 	</div>
-	<h1>Welcome, <c:out value="${user.firstName}" /></h1>
-	<h4>Here are some of the events in your state (<c:out value="${user.state}"/>):</h4>
+	<h5 class="tableTitle">Here are some of the events in your state (<c:out value="${user.state}"/>):</h5>
 	<table class="table table-striped"">
 	    <thead>
 	        <tr>
@@ -41,7 +40,6 @@
 		            <td><c:out value="${e.date}"/></td>
 		            <td><c:out value="${e.location}"/></td>
 		            <td><c:out value="${e.creator.firstName}"/></td>
-		            <%-- <td><c:out value="join"/></td> --%>
 		            <td><c:out value="
 		            	${ e.creator.firstName == user.firstName ? 'Edit | Delete' : 'Join' }"/>
 		            </td>
@@ -50,7 +48,7 @@
 	    </tbody>
 	</table>
 	<br></br>
-	<h4>Here are some of the events in other states:</h4>
+	<h5 class="tableTitle">Here are some of the events in other states:</h5>
 		<table class="table table-striped">
 	    <thead>
 	        <tr>
@@ -80,15 +78,15 @@
 		<form:hidden value="${user.id}" path="creator"/>
 	<%-- 	<form:errors path="name"/>
 		<form:errors path="lastName"/>  --%>
-	    <div class="mb-3 w-50">
+	    <div class="mb-3 w-25">
 	        <form:label path="name" for="name" class="form-label">Name</form:label>
 	        <form:input path="name" type="text" class="form-control" id="name"/>
 	    </div>
-	    <div class="mb-3 w-50">
+	    <div class="mb-3 w-25">
 	        <label for="date1" class="form-label">Date</label>
 	        <input name="date1" type="date" class="form-control" id="date1"/>
 	    </div>
-	    <div class="mb-3 w-50">
+	    <div class="mb-3 w-25">
 	        <form:label path="location" for="location" class="form-label">Location</form:label>
 	        <form:input path="location" type="text" class="form-control" id="location"/>
 	    </div>
