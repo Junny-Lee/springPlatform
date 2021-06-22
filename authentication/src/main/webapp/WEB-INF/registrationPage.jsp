@@ -36,6 +36,7 @@
         </p>
         <button type="submit" class="btn btn-info">Register</button>
     </form:form>
+    
     <h3>Already have an account?</h3>
     <a href="/login">Login</a>
 </body>
