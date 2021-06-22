@@ -22,9 +22,9 @@
 			<a href="/questions">Back to Question List</a>
 		</div>
 	</div>
-	<h3><c:out value="${question.myQuestion} "/></h3>
+	<h3><c:out value="${q.myQuestion} "/></h3>
 	<div>
-		<p>Tags: &nbsp<c:out value="${question.tags}"></c:out></p>
+		<p>Tags: &nbsp<c:out value="${q.tags}"></c:out></p>
 	</div>
 	<div id="body">
 		<div id="table">
@@ -35,9 +35,9 @@
 			        </tr>
 			    </thead>
 			    <tbody>
-			        <c:forEach items="${question.answers}" var="answer">
+			        <c:forEach items="${q.answers}" var="answer">
 				        <tr>
-				            <td><a href="/questions/${question.id}"><c:out value="${answer.answer}"/></a></td>
+				            <td><c:out value="${answer.answer}"/></td>
 				        </tr>
 			        </c:forEach>
 			    </tbody>
@@ -45,7 +45,8 @@
 		</div>
 		<form:form action="/questions/answer" method="post" modelAttribute="newAnswer" id="newForm"> <!-- this was question id before -->
 			<form:errors path="answer"></form:errors>
-			<input type="hidden" name="questionId" value="${question.id}"/> <!-- look back!!!!! -->
+			<%-- <input type="hidden" name="questionId" value="${question.id}"/>  --%><!-- look back!!!!! -->
+			<form:hidden path="question" value="${q.getId()}"/>
 			<div class="form-group w-100">
 				<form:label path="answer"><h4>Add your answer:</h4></form:label> <!-- need path when using form: something -->
 			  	<form:textarea path="answer" class="form-control"/>

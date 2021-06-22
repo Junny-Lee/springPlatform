@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.junny.dojoOverflow.models.Answer;
 import com.junny.dojoOverflow.models.Question;
@@ -58,37 +57,48 @@ public class QuestionsController {
 	 @RequestMapping("/questions/{id}") // READ ONE
 	 public String show(Model model, @PathVariable("id") Long id) {
 		 Question question = questionService.findQuestion(id);
-		 model.addAttribute("question", question);
+		 model.addAttribute("q", question);
 		 model.addAttribute("newAnswer", new Answer()); // reason for modelAttribute="answer" in show.jsp
 		 return "/questions/show.jsp";
 	 }
 	 
-	 @RequestMapping("/questions/{id}/edit") // display jsp file 
-	 public String edit(@PathVariable("id") Long id, Model model) {
-	     Question question = questionService.findQuestion(id);
-	     model.addAttribute("question", question);
-	     return "/questions/edit.jsp";
-	 }
+//	 @RequestMapping("/questions/{id}/edit") // display jsp file 
+//	 public String edit(@PathVariable("id") Long id, Model model) {
+//	     Question question = questionService.findQuestion(id);
+//	     model.addAttribute("question", question);
+//	     return "/questions/edit.jsp";
+//	 }
 	 
 	 //@RequestMapping(value="/questions/{id}", method=RequestMethod.POST) // actually doing the put
-	 @RequestMapping(value="/questions/answer", method=RequestMethod.POST) 
-	 public String update(@Valid @ModelAttribute("newAnswer") Answer answer, BindingResult result,
-			 			@RequestParam("questionId") Long questionId,
-			 			Model model) { // look back!!!
+	 @RequestMapping(value="/questions/answer", method=RequestMethod.POST) // POST because creating Answers
+	 public String update(@Valid @ModelAttribute("newAnswer") Answer answer, BindingResult result, Model model) { // look back!!!
 	     if (result.hasErrors()) {
-	    	 model.addAttribute("question", questionService.findQuestion(questionId));
 	         return "/questions/show.jsp";
 	     } else { // create linkage
-	    	 Question question = questionService.findQuestion(questionId);
-	    	 answer.setQuestion(question); // set the question
-	         Answer newAnswer = answerService.createAnswer(answer);
-	         List<Answer> answers = question.getAnswers();
-	         answers.add(newAnswer);
-	         question.setAnswers(answers);
-	         questionService.updateQuestion(question);
-	         return "redirect:/questions/" + questionId;
+	    	 answerService.createAnswer(answer);
+	         return "redirect:/questions/" + answer.getQuestion().getId(); // look back, did with john!
 	     }
 	 }
+	 
+	 // how i did update with Robert:
+//	 @RequestMapping(value="/questions/answer", method=RequestMethod.POST) 
+//	 public String update(@Valid @ModelAttribute("newAnswer") Answer answer, BindingResult result,
+//			 			@RequestParam("questionId") Long questionId,
+//			 			Model model) { // look back!!!
+//	     if (result.hasErrors()) {
+//	    	 model.addAttribute("question", questionService.findQuestion(questionId));
+//	         return "/questions/show.jsp";
+//	     } else { // create linkage
+//	    	 Question question = questionService.findQuestion(questionId);
+//	    	 answer.setQuestion(question); // set the question
+//	         Answer newAnswer = answerService.createAnswer(answer);
+//	         List<Answer> answers = question.getAnswers();
+//	         answers.add(newAnswer);
+//	         question.setAnswers(answers);
+//	         questionService.updateQuestion(question);
+//	         return "redirect:/questions/" + questionId;
+//	     }
+//	 }
 	 
 	 @RequestMapping(value="/questions/{id}/delete", method=RequestMethod.DELETE) // delete
 	 public String destroy(@PathVariable("id") Long id) {

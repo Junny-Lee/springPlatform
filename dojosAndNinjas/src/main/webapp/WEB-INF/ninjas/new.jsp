@@ -28,7 +28,7 @@
 		<form:errors path="lastName"/>  --%>
 		<div class="form-group w-50">
 			<form:label path="dojo">Dojo:</form:label> <!-- need path when using form: something -->
- 			<form:select path="dojo" class="form-control">
+ 			<form:select path="dojo" class="form-control"> <!-- this is where we are making the linkage -->
  				<option value="" disabled selected>Please pick a Dojo!</option>
 				<c:forEach items="${dojos}" var="dojo" varStatus="loop">
                          <form:option value="${dojo.id}">${dojo.name}</form:option>
