@@ -3,6 +3,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!-- bootstrap -->
 <%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form"%>
+<!-- to format date -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,12 +38,24 @@
 	    <tbody>
 	        <c:forEach items="${eventsInSameState}" var="e">
 		        <tr>
-		            <td><a href=""><c:out value="${e.name}"/></a></td>
-		            <td><c:out value="${e.date}"/></td>
+		            <td><a href="/events/${e.id}"><c:out value="${e.name}"/></a></td>
+		            <td><fmt:formatDate value="${e.date}" pattern="MMMM dd, yyyy"/></td>
 		            <td><c:out value="${e.location}"/></td>
 		            <td><c:out value="${e.creator.firstName}"/></td>
-		            <td><c:out value="
-		            	${ e.creator.firstName == user.firstName ? 'Edit | Delete' : 'Join' }"/>
+		            <td>
+		            	<c:if test = "${e.creator.firstName == user.firstName}">
+		            		<a href="/events/${e.id}/edit">Edit</a>
+						    <%-- <form action="/events/${e.id}/delete" method="post">
+							    <input type="hidden" name="_method" value="delete">
+							    <button type="submit" class="btn btn-warning">Delete</button>
+							</form> --%>
+							<a href="/events/${e.id}/delete">Delete</a>
+		            	</c:if>
+		            	<c:if test = "${e.creator.firstName != user.firstName}">
+		            		<form:form method="POST" action="/join" modelAttribute="e">
+						        <button type="submit" class="btn btn-link">Join</button>
+						    </form:form>
+		            	</c:if>
 		            </td>
 		        </tr>
 	        </c:forEach>
@@ -63,8 +77,8 @@
 	    <tbody>
 	        <c:forEach items="${eventsInOtherStates}" var="e">
 		        <tr>
-		            <td><a href=""><c:out value="${e.name}"/></a></td>
-		            <td><c:out value="${e.date}"/></td>
+		            <td><a href="/events/${e.id}"><c:out value="${e.name}"/></a></td>
+		            <td><fmt:formatDate value="${e.date}" pattern="MMMM dd, yyyy"/></td>
 		            <td><c:out value="${e.location}"/></td>
 		            <td><c:out value="${e.state}"/></td>
 		            <td><c:out value="${e.creator.firstName}"/></td>

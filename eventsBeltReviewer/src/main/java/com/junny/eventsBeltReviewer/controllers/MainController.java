@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +81,7 @@ public class MainController {
 		 model.addAttribute("eventsInOtherStates", eventsInOtherStates);
 		 return "homePage.jsp";
 	 }
+	 
 	 @RequestMapping("/logout")
 	 public String logout(HttpSession session) {
 	     // invalidate session
@@ -96,12 +98,53 @@ public class MainController {
 			 System.out.println(result.getFieldErrors());
 			 return "homePage.jsp";
 		 }
-		 System.out.println(date);
+//		 System.out.println(date);
 		 Date d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		 event.setDate(d);
 		 eventService.createEvent(event);
 		 return "redirect:/events";
 	 }
+	 
+	 @RequestMapping("/events/{eventId}")
+	 public String eventPage(HttpSession session, Model model, @PathVariable("eventId") Long eventId) {
+	     // get user from session, save them in the model and return the home page
+		 Long userId = (Long) session.getAttribute("userId");
+		 User u = userService.findUserById(userId);
+		 Event e = eventService.findEvent(eventId);
+		 model.addAttribute("event", new Event()); // look at this line!
+		 model.addAttribute("user", u);
+		 model.addAttribute("e", e);
+		 return "eventPage.jsp";
+	 }
+	 
+	 @RequestMapping("/events/{id}/edit") // display jsp file 
+	 public String edit(@PathVariable("id") Long id, Model model) {
+	     Event event = eventService.findEvent(id);
+	     model.addAttribute("event", event);
+	     return "editEvent.jsp";
+	 }
+	 
+	 @RequestMapping(value="/events/{id}/process", method=RequestMethod.PUT) // actually doing the put
+	 public String update(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session,
+			 			@RequestParam("date2") String date) throws ParseException {
+	     if (result.hasErrors()) {
+	    	 System.out.println(result.getAllErrors());
+	         return "editEvent.jsp";
+	     } else {
+	    	 event.setCreator(userService.findUserById((Long)session.getAttribute("userId"))); // need to cast 
+	    	 Date d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			 event.setDate(d);
+	    	 eventService.updateEvent(event);
+	         return "redirect:/events";
+	     }
+	 }
+
+	 @RequestMapping(value="/events/{id}/delete") // delete
+	 public String destroy(@PathVariable("id") Long id) {
+	     eventService.deleteEvent(id);
+	     return "redirect:/events";
+	 }
+	 
 }
 
 

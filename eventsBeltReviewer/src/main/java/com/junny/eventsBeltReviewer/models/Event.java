@@ -1,6 +1,7 @@
 package com.junny.eventsBeltReviewer.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="events")
@@ -24,12 +28,23 @@ public class Event {
     private String location;
     private String state;
     private Date date;
+    
     @Column(updatable=false)
     private Date createdAt;
+    
     private Date updatedAt;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User creator;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "users_events", 
+        joinColumns = @JoinColumn(name = "event_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> joinedUsers;
     
     public Event() {
     }
@@ -107,5 +122,14 @@ public class Event {
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
+
+	public List<User> getJoinedUsers() {
+		return joinedUsers;
+	}
+
+	public void setJoinedUsers(List<User> joinedUsers) {
+		this.joinedUsers = joinedUsers;
+	}
+	
     
 }

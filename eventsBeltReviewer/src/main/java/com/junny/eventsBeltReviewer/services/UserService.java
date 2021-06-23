@@ -1,15 +1,13 @@
 package com.junny.eventsBeltReviewer.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import com.junny.eventsBeltReviewer.models.Event;
 import com.junny.eventsBeltReviewer.models.User;
-import com.junny.eventsBeltReviewer.repositories.UserRepository;
 import com.junny.eventsBeltReviewer.repositories.EventRepository;
+import com.junny.eventsBeltReviewer.repositories.UserRepository;
 
 @Service
 public class UserService {

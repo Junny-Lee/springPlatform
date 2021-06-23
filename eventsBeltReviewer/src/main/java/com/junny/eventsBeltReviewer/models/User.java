@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -32,13 +35,24 @@ public class User {
     private String state;
     @Size(min=5, message="Password must be greater than 5 characters")
     private String password;
+    
     @Transient
     private String passwordConfirmation;
+    
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    
     @OneToMany(mappedBy="creator", fetch = FetchType.LAZY)
     private List<Event> events;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_events", 
+            joinColumns = @JoinColumn(name = "user_id"), 
+            inverseJoinColumns = @JoinColumn(name = "event_id")
+        )
+    private List<Event> joinedEvents;
     
     public User() {
     }
@@ -139,6 +153,14 @@ public class User {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	public List<Event> getJoinedEvents() {
+		return joinedEvents;
+	}
+
+	public void setJoinedEvents(List<Event> joinedEvents) {
+		this.joinedEvents = joinedEvents;
 	}
     
 }
