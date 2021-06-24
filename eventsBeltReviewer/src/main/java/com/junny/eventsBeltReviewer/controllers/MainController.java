@@ -145,6 +145,16 @@ public class MainController {
 	     return "redirect:/events";
 	 }
 	 
+	 // created this
+	 // allows Users to join Events
+	 @RequestMapping(value="/join/{id}")
+	 public String join(@PathVariable("id") Long eventId, HttpSession session) {
+		 Event event = eventService.findEvent(eventId);
+		 event.getJoinedUsers().add(userService.findUserById((Long)session.getAttribute("userId")));
+		 eventService.updateEvent(event);
+		 return "redirect:/events/" + event.getId();	// look at this!!!!!!
+	 }
+	 
 }
 
 

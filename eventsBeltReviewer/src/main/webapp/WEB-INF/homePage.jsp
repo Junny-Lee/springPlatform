@@ -52,9 +52,7 @@
 							<a href="/events/${e.id}/delete">Delete</a>
 		            	</c:if>
 		            	<c:if test = "${e.creator.firstName != user.firstName}">
-		            		<form:form method="POST" action="/join" modelAttribute="e">
-						        <button type="submit" class="btn btn-link">Join</button>
-						    </form:form>
+						    <a href="/join/${e.id}">Join</a>
 		            	</c:if>
 		            </td>
 		        </tr>
@@ -82,7 +80,7 @@
 		            <td><c:out value="${e.location}"/></td>
 		            <td><c:out value="${e.state}"/></td>
 		            <td><c:out value="${e.creator.firstName}"/></td>
-		            <td><c:out value="Join"/></td>
+		            <td><a href="/join/${e.id}">Join</a></td>
 		        </tr>
 	        </c:forEach>
 	    </tbody>
