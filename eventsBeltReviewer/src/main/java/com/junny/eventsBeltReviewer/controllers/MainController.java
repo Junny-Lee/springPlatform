@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.junny.eventsBeltReviewer.models.Event;
+import com.junny.eventsBeltReviewer.models.Message;
 import com.junny.eventsBeltReviewer.models.User;
 import com.junny.eventsBeltReviewer.services.EventService;
+import com.junny.eventsBeltReviewer.services.MessageService;
 import com.junny.eventsBeltReviewer.services.UserService;
 import com.junny.eventsBeltReviewer.validator.UserValidator;
 
@@ -28,11 +30,13 @@ public class MainController {
 	 private final UserService userService;
 	 private final UserValidator userValidator;
 	 private final EventService eventService;
+	 private final MessageService messageService;
  
-	 public MainController(UserService userService, UserValidator userValidator, EventService eventService) {
+	 public MainController(UserService userService, UserValidator userValidator, EventService eventService, MessageService messageService) {
 	        this.userService = userService;
 	        this.userValidator = userValidator;
 	        this.eventService = eventService; 
+	        this.messageService = messageService;
 	    }
 	 
 	 @RequestMapping("/")
@@ -95,7 +99,7 @@ public class MainController {
 			 				Model model, HttpSession session,
 			 				@RequestParam("date1") String date) throws ParseException {
 		 if(result.hasErrors()) {
-			 System.out.println(result.getFieldErrors());
+			 //System.out.println(result.getFieldErrors());
 			 return "homePage.jsp";
 		 }
 //		 System.out.println(date);
@@ -111,9 +115,12 @@ public class MainController {
 		 Long userId = (Long) session.getAttribute("userId");
 		 User u = userService.findUserById(userId);
 		 Event e = eventService.findEvent(eventId);
+		 List<Message> comments = e.getComments(); // for messages
 		 model.addAttribute("event", new Event()); // look at this line!
 		 model.addAttribute("user", u);
 		 model.addAttribute("e", e);
+		 model.addAttribute("comments", comments);
+		 model.addAttribute("message", new Message()); // create new message
 		 return "eventPage.jsp";
 	 }
 	 
@@ -153,18 +160,24 @@ public class MainController {
 		 event.getJoinedUsers().add(userService.findUserById((Long)session.getAttribute("userId")));
 		 eventService.updateEvent(event);
 		 return "redirect:/events/" + event.getId();	// look at this!!!!!!
-	 }
+	 }	
 	 
+	 // created this 
+	 // allows Users to make comments
+	 @RequestMapping(value="/comment", method=RequestMethod.POST)
+	 public String comment(@Valid @ModelAttribute("message") Message comment, BindingResult result, 
+			 				Model model, HttpSession session ) {
+		 if(result.hasErrors()) {
+			 System.out.println(result.getFieldErrors());
+			 return "eventPage.jsp";
+		 } else {
+			 messageService.createMessage(comment); // the object
+			 return "redirect:/events/" + comment.getEvent().getId();
+		 }
+	 }
+	 // ways to get event id:
+	 // 1. the way we did it here
+	 // 2. get rid of <form> and just make the form: hidden a  input type=hidden with "name" instead of "path" && and then do @RequestParam in the controller and target the "name" 
+	 // 3. @PathVariable and have action="/comment/{eventId}
 }
-
-
-
-
-
-
-
-
-
-
-
 

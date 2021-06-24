@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -31,7 +32,6 @@ public class Event {
     
     @Column(updatable=false)
     private Date createdAt;
-    
     private Date updatedAt;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,6 +45,10 @@ public class Event {
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> joinedUsers;
+    
+    // @OneToMany(mappedBy="event", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="event", fetch = FetchType.LAZY)
+    private List<Message> comments;
     
     public Event() {
     }
@@ -129,6 +133,14 @@ public class Event {
 
 	public void setJoinedUsers(List<User> joinedUsers) {
 		this.joinedUsers = joinedUsers;
+	}
+
+	public List<Message> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Message> comments) {
+		this.comments = comments;
 	}
 	
     

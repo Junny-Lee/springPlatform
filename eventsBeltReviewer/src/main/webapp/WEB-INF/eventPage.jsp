@@ -16,7 +16,7 @@
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+<link rel="stylesheet" type="text/css" href="/css/eventPage.css">
 </head>
 <body>
 	<div id="main">
@@ -33,8 +33,21 @@
 		        </c:forEach>
 			</p>
 		</div>
-		<div id="rightSide">
-		
+ 		<div id="rightSide">
+ 			<h4>Messages:</h4>
+			<c:forEach items="${e.comments}" var="c">
+		        <ul>
+		            <li><c:out value="${c.comment}"/></li>
+		        </ul>
+		     </c:forEach>
+			<form:form action="/comment" method="post" modelAttribute="message" id="newForm">
+				<form:hidden value="${e.id}" path="event"/> <!--  going to messages.event -->
+			    <div class="mb-3 w-100">
+			        <form:label path="comment" for="comment" class="form-label">Add Comment:</form:label>
+			        <form:input path="comment" type="text" class="form-control" id="comment"/>
+			    </div>
+			    <button type="submit" class="btn btn-info">Submit</button>
+			</form:form>
 		</div>
 	</div>
 </body>
