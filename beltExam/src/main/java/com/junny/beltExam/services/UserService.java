@@ -1,11 +1,13 @@
 package com.junny.beltExam.services;
 
+import java.util.List;
 import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.junny.beltExam.models.User;
 import com.junny.beltExam.repositories.UserRepository;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -52,5 +54,10 @@ public class UserService {
                 return false;
             }
         }
+    }
+    
+    // finds all users
+    public List<User> allUsers() {
+        return userRepository.findAll(); 
     }
 }
