@@ -18,7 +18,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <p><c:out value="${error}" /></p>
+    <p><c:out value="${error}"/></p>
     <form method="post" action="/login">
         <p>
             <label for="email">Email</label>
@@ -29,6 +29,9 @@
             <input type="password" id="password" name="password"/>
         </p>
         <button type="submit" class="btn btn-info">Login</button>
-    </form>    
+    </form>
+    <br><br>
+    <h3>Don't have an account?</h3>
+    <a href="/registration">Register</a>  
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %> --%>
 <!-- bootstrap -->
 <%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form"%>
 
@@ -36,7 +36,7 @@
         </p>
         <button type="submit" class="btn btn-info">Register</button>
     </form:form>
-    
+    <br><br>
     <h3>Already have an account?</h3>
     <a href="/login">Login</a>
 </body>
