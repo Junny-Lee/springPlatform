@@ -1,0 +1,19 @@
+*{
+	margin: 0px;
+	padding: px;
+}
+#navbar{
+	padding:4%;
+	padding-left: 0%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+body{
+	padding: 4%;
+}
+.table.table-striped{
+	width: 90%;
+	padding-left: 4%;
+	outline: solid black 1px;
+}

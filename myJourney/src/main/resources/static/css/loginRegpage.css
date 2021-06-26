@@ -1,0 +1,20 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#welcome{
+	padding: 4%;
+}
+#main{
+	display: flex;
+	justify-content: space-around;
+}
+#register, #login{
+	outline: black solid 1px;
+	padding: 4%;
+}
+#locationState {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end; /* aligns the two boxes */
+}
