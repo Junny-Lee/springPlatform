@@ -1,6 +1,9 @@
 *{
 	margin: 0px;
-	padding: px;
+	padding: 0px;
+}
+body{
+	background-color: #e9e9eb;
 }
 #navbar{
 	text-align:right;
@@ -25,15 +28,25 @@
 #main{
 	min-height: 500px;
 	min-width: 1200px;
-/* 	display: flex;
-	justify-content: space-around; */
+	display: flex;
+	justify-content: space-around;
     background-image: url("/images/desk.jpeg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-.table.table-striped{
-	width: 90%;
-	padding-left: 4%;
-	outline: solid black 1px;
+#login{
+	padding: 4%;
+}
+.btn.btn-primary{
+	background-color: #563d7c;
+}
+.label {
+	color: gray;
+	font-size: 80%;
+}
+#locationState {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end; /* aligns the two boxes */
 }

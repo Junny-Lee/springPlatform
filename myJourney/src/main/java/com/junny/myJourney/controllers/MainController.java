@@ -34,10 +34,14 @@ public class MainController {
 	        this.userValidator = userValidator;
 	        this.postService = postService; 
 	    }
-	 
 	 @RequestMapping("/")
+	 public String firstPage() {
+	     return "firstPage.jsp";
+	 }
+	 
+	 @RequestMapping("/register")
 	 public String registerFormAndLogin(@ModelAttribute("user") User user) {
-	     return "loginRegPage.jsp";
+	     return "register.jsp";
 	 }
 	 
 	 @RequestMapping(value="/registration", method=RequestMethod.POST)
@@ -51,6 +55,11 @@ public class MainController {
 		 User u = userService.registerUser(user);
 		 session.setAttribute("userId", u.getId());
 		 return "redirect:/posts";
+	 }
+	 
+	 @RequestMapping("/loginNow")
+	 public String lgoin(@ModelAttribute("user") User user) {
+	     return "login.jsp";
 	 }
 	 
 	 @RequestMapping(value="/login", method=RequestMethod.POST)

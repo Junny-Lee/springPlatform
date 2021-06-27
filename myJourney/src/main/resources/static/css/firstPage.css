@@ -1,6 +1,6 @@
 *{
 	margin: 0px;
-	padding: px;
+	padding: 0px;
 }
 #navbar{
 	text-align:right;
@@ -25,15 +25,25 @@
 #main{
 	min-height: 500px;
 	min-width: 1200px;
-/* 	display: flex;
-	justify-content: space-around; */
     background-image: url("/images/desk.jpeg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-.table.table-striped{
-	width: 90%;
-	padding-left: 4%;
-	outline: solid black 1px;
+.sentence{
+	text-align: center;
+	color: dark-gray;
+	font-family: "Fantasy";
+}
+#newForm{
+	display: flex;
+	justify-content: center;
+}
+.btn.btn-primary{
+	background-color: #563d7c;
+	align-items: center;
+	padding: 1%;
+}
+.btn.btn-link{
+	padding: 0;
 }
