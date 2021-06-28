@@ -1,75 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!-- bootstrap -->
 <%@ taglib prefix = "form" uri="http://www.springframework.org/tags/form"%>
-<!-- to format date -->
-<%@ taglib uri= "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome</title>
+<title>Insert title here</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- link css -->
-<link rel="stylesheet" type="text/css" href="/css/homePage.css">
+<link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
 <body>
-	<div id="navbar">
-		<a href="/logout" class="aTags">Log out</a>
-	</div>
-	<h2 id="logo">MY JOURNEY</h2>	
-	<div id="main">
-		<h2 id="welcome">Welcome, <c:out value="${user.firstName}" /></h2>
-		<a href="/logout" class="aTags">Logout</a>
-		<div id="tableOfPosts">
-			<table class="table table-striped">
-			    <thead>
-			        <tr>
-			            <th scope="col">Title</th>
-			            <th scope="col">Date</th>
-			            <th scope="col">Action / Status</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <c:forEach items="${posts}" var="p">
-				        <tr>
-				            <td><a href="/posts/${p.id}"><c:out value="${p.title}"/></a></td>
-				            <td><fmt:formatDate value="${p.date}" pattern="MMMM dd, yyyy"/></td>
-				            <td>
-			            		<p>
-				            		<a href="/posts/${p.id}/edit">Edit</a> &nbsp|&nbsp
-									<a href="/posts/${p.id}/delete">Delete</a>
-			            		</p>
-				            </td>
-				        </tr>
-			        </c:forEach>
-			    </tbody>
-			</table>		
+	<div id="navBar">
+		<h2 id="logo"><a href="/home" id="logoTag">My Journey</a></h2>
+		<div id="links">
+			<a href="/logout" class="aTags">Logout</a>
 		</div>
-		<br></br>
-	 	<form:form action="/createPost" method="post" modelAttribute="post" id="newForm">
-			<form:hidden value="${user.id}" path="creator"/>
-		<%-- 	<form:errors path="name"/>
-			<form:errors path="lastName"/>  --%>
-		    <div class="mb-3 w-25">
-		        <form:label path="title" for="title" class="form-label">Title</form:label>
-		        <form:input path="title" type="text" class="form-control" id="title"/>
-		    </div>
-		    <div class="mb-3 w-25">
-		        <label for="date1" class="form-label">Date</label>
-		        <input name="date1" type="date" class="form-control" id="date1"/>
-		    </div>
-		   	<div class="mb-3 w-25">
-		        <label for="text" class="form-label">Text</label>
-		        <input name="text" type="text" class="form-control" id="text"/>
-		    </div>
-		    <button type="submit" class="btn btn-info">Create</button>
-		</form:form>
+	</div>
+	<div id="main">
+		<div id="notebookName">
+		<h2 id="welcome"><c:out value="${user.firstName}"/>'s Journal</h2>
+<%-- 		<div id="options">
+			<form:form action="/posts" method="post" modelAttribute="post" id="newForm">
+			    <button type="submit" class="btn btn-primary">See all entries</button>
+			</form:form>
+			<form:form action="/newPost" method="post" modelAttribute="post" id="newForm">
+			    <button type="submit" class="btn btn-primary">Add Entry</button>
+			</form:form>
+		</div> --%>
+		<div id="icons">
+			<form:form action="/newPost" method="post" modelAttribute="post" id="formNewEntry">
+				    <button type="submit" class="btn btn-link" data-toggle="popover" data-trigger="hover" id="newEntry"><img src="https://img.icons8.com/ios/40/000000/create-new.png"/>New Entry</button>
+			</form:form>
+			<form:form action="/posts" method="post" modelAttribute="post" id="formViewEntries">
+				    <button type="submit" class="btn btn-link" data-toggle="popover" data-trigger="hover"><img src="https://img.icons8.com/ios/40/000000/list--v2.png"/></button>
+			</form:form>
+			<form:form action="" method="post" modelAttribute="post" id="formSettings">
+				    <button type="submit" class="btn btn-link" data-toggle="popover" data-trigger="hover"><img src="https://img.icons8.com/ios/40/000000/settings--v1.png"/></button>
+			</form:form>
+		</div>
+		<br>
+		</div>
 	</div>
 </body>
 </html>

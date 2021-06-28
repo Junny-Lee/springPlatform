@@ -19,6 +19,10 @@
 <link rel="stylesheet" type="text/css" href="/css/eventPage.css">
 </head>
 <body>
+	<div id="navbar">
+		<a href="/logout" class="aTags">Log out</a>
+	</div>
+	<h2 id="logo"><a href="/" id="logoTag">My Journey</a></h2>
 	<div id="main">
 		<div id="leftSide">
 			<h3>${p.title}</h3><br>

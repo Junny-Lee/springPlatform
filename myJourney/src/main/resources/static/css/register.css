@@ -5,24 +5,33 @@
 body{
 	background-color: #e9e9eb;
 }
-#navbar{
-	text-align:right;
-	padding-right: 0.5rem;
+#navBar{
+	display: flex;
+	justify-content: space-between;
 	background-color: #563d7c;
 	color: white;
-	margin-bottom: 0px;
+	padding: 1.3rem 0.7rem 0rem 0.7rem;
+	align-items: baseline;
 }
 .aTags{
+	text-decoration: none;
+	color: white;
+}
+.aTags:hover{
 	text-decoration: none;
 	color: white;
 }
 #logo{
 	padding: 1%;
 	padding-top: 0px;
-	font-family: "Fantasy";
+	font-family: Bradley Hand, cursive;
 	text-align: center;
-	/* font-weight: bold; */
 	background-color: #563d7c;
+	color: white;
+	margin-left: 43.5%;
+}
+#logoTag{
+	text-decoration: none;
 	color: white;
 }
 #main{
@@ -38,8 +47,25 @@ body{
 #register{
 	padding: 4%;
 }
+/* .form-group{
+	margin-bottom: 0rem;
+} */
+h3{
+	text-align: center;
+}
 .btn.btn-primary{
 	background-color: #563d7c;
+	align-items: center;
+	padding: 3%;
+}
+.btn.btn-primary:hover{
+	background-color: #7058a7;
+	align-items: center;
+	padding: 3%;
+}
+#buttonDiv{
+	display: flex;
+	justify-content: center;
 }
 #fullName{
 	display: flex;
@@ -49,6 +75,6 @@ body{
 	color: red;
 }
 .label {
-	color: gray;
-	font-size: 80%;
+	color: #505055;
+	font-size: 100%;
 }

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -21,8 +22,11 @@ public class Post {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message="There must be a title.")
     private String title;
+    
     private Date date;
+    @NotEmpty(message="Must have text.")
     private String text;
     
     @Column(updatable=false)

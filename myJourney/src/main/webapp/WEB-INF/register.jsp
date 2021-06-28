@@ -17,40 +17,41 @@
 <link rel="stylesheet" type="text/css" href="/css/register.css">
 </head>
 <body>
-<div id="navbar">
-	<a href="/register" class="aTags">Sign up</a> &nbsp|&nbsp
-	<a href="/loginNow" class="aTags">Log in</a>
-</div>
-<h2 id="logo">MY JOURNEY</h2>
+	<div id="navBar">
+		<h2 id="logo"><a href="/" id="logoTag">My Journey</a></h2>
+		<div id="links">
+			<a href="/loginNow" class="aTags">Log in</a>
+		</div>
+	</div>
 	<div id="main">
 		<div id="register">
-		    <h3>Don't have an account?</h3>
-		    <h5>Register here!</h5>
+		    <h3>Welcome!</h3>
+		    <h3>Create your free account.</h3><br>
 		    <p><form:errors path="user.*" id="errors"/></p>
-		    <form:form method="POST" action="/registration" modelAttribute="user">
+		    <form:form method="POST" action="/registration" modelAttribute="user" id="regForm">
 		    	<div id="fullName">
-			    	<div>
-			            <form:input type="text" path="firstName" class="w-75"/><br>
+			    	<div class="form-group">
+			            <form:input type="text" path="firstName" class="form-control input-lg w-100"/><br>
 			            <form:label path="firstName" class="label">FIRST NAME</form:label>
 			       </div>
-			       <div>
-			            <form:input type="text" path="lastName" class="w-75"/><br>
+			       <div class="form-group">
+			            <form:input type="text" path="lastName" class="form-control input-lg w-100"/><br>
 			            <form:label path="lastName" class="label">LAST NAME</form:label>
 			       </div>
 		    	</div>
-		       <div>
-		            <form:input type="email" path="email" class="w-100"/><br>
+		       <div class="form-group">
+		            <form:input type="email" path="email" class="form-control input-lg w-100"/><br>
 		            <form:label path="email" class="label">EMAIL ADDRESS</form:label>
 		       </div>
-		       <div>
-		            <form:password path="password" class="w-100"/><br>
+		       <div class="form-group">
+		            <form:password path="password" class="form-control input-lg w-100"/><br>
 		            <form:label path="password" class="label">PASSWORD</form:label>
 		       </div>
-		       <div>
-		            <form:password path="passwordConfirmation" class="w-100"/><br>
+		       <div class="form-group">
+		            <form:password path="passwordConfirmation" class="form-control input-lg w-100"/><br>
 		            <form:label path="passwordConfirmation" class="label">CONFIRM PASSWORD</form:label>
 		       </div>
-		        <button type="submit" class="btn btn-primary">Create Account</button>
+		        <div id="buttonDiv"><button type="submit" class="btn btn-primary">Create Account</button></div>
 		    </form:form>
 		    <br><br>
 <%-- 		    <h5 class="sentence">Already have an account?</h5>

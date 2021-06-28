@@ -17,26 +17,27 @@
 <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
-	<div id="navbar">
-		<a href="/register" class="aTags">Sign up</a> &nbsp|&nbsp
-		<a href="/loginNow" class="aTags">Log in</a>
+	<div id="navBar">
+		<h2 id="logo"><a href="/" id="logoTag">My Journey</a></h2>
+		<div id="links">
+			<a href="/register" class="aTags">Sign up</a>
+		</div>
 	</div>
-	<h2 id="logo">MY JOURNEY</h2>
 	<div id="main">
 		<div id="login">
 			<h3>Already have an account?</h3>
-			<h5>Login!</h5>
+			<h3>Sign in here!</h3><br>
 		    <p><c:out value="${error}" /></p>
 		    <form method="post" action="/login">
-		        <div>
-		            <input type="text" id="email" name="email"/><br>
+		        <div class="form-group">
+		            <input type="text" class="form-control input-lg w-100" id="email" name="email"/><br>
 		            <label for="email" class="label">EMAIL</label>
 		        </div>
-		        <div>
-		            <input type="password" id="password" name="password"/><br>
+		        <div class="form-group">
+		            <input type="password" class="form-control input-lg w-100" id="password" name="password"/><br>
 		            <label for="password" class="label">PASSWORD</label>
 		        </div>
-		        <button type="submit" class="btn btn-primary">Login</button>
+		        <div id="buttonDiv"><button type="submit" class="btn btn-primary">Login</button></div>
 		    </form>  
 		</div>
 	</div>

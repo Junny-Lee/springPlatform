@@ -17,11 +17,13 @@
 <link rel="stylesheet" type="text/css" href="/css/firstPage.css">
 </head>
 <body>
-<div id="navbar">
-	<a href="/register" class="aTags">Sign up</a> &nbsp|&nbsp
-	<a href="/loginNow" class="aTags">Log in</a>
+<div id="navBar">
+	<h2 id="logo"><a href="/" id="logoTag">My Journey</a></h2>
+	<div id="links">
+		<a href="/register" class="aTags">Sign up</a> &nbsp|&nbsp
+		<a href="/loginNow" class="aTags">Log in</a>
+	</div>
 </div>
-<h2 id="logo">MY JOURNEY</h2>
 	<div id="main">
 		<br></br><br></br>
 		<h5 class="sentence">Online journal that is private and customizable.</h5>

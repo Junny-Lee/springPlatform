@@ -50,7 +50,7 @@ public class MainController {
 	     // else, save the user in the database, save the user id in session, and redirect them to the /home route
 		 userValidator.validate(user, result);
 		 if(result.hasErrors()) {
-			 return "loginRegPage.jsp";
+			 return "register.jsp";
 		 }
 		 User u = userService.registerUser(user);
 		 session.setAttribute("userId", u.getId());
@@ -70,7 +70,7 @@ public class MainController {
 		 if (isAuthenticated) {
 			 User u = userService.findByEmail(email);
 			 session.setAttribute("userId", u.getId());
-			 return "redirect:/posts";
+			 return "redirect:/home";
 		 } else {
 			 model.addAttribute("error", "Invalid Credentials. Please try again.");
 			 return "loginRegPage.jsp";
@@ -83,10 +83,12 @@ public class MainController {
 		 Long userId = (Long) session.getAttribute("userId");
 		 User u = userService.findUserById(userId);
 		 List<Post> posts = postService.allPosts();
+		 int countPosts = posts.size();
 		 model.addAttribute("posts", posts);
 		 model.addAttribute("post", new Post()); // look at this line!
 		 model.addAttribute("user", u);
-		 return "homePage.jsp";
+		 model.addAttribute("countPosts", countPosts);
+		 return "allPosts.jsp";
 	 }
 	 
 	 @RequestMapping("/logout")
@@ -103,13 +105,26 @@ public class MainController {
 			 				@RequestParam("date1") String date) throws ParseException {
 		 if(result.hasErrors()) {
 			 System.out.println(result.getFieldErrors());
-			 return "homePage.jsp";
+			 return "allPosts.jsp";
 		 }
 		 System.out.println(post.getText() + post.getDate() + post.getText());
 		 Date d = new SimpleDateFormat("yyyy-MM-dd").parse(date);
 		 post.setDate(d);
 		 postService.createPost(post);
 		 return "redirect:/posts";
+	 }
+	 
+	 //added this create new
+	 @RequestMapping("/newPost")
+	 public String newPost(HttpSession session, Model model) {
+	     // get user from session, save them in the model and return the home page
+		 Long userId = (Long) session.getAttribute("userId");
+		 User u = userService.findUserById(userId);
+		 List<Post> posts = postService.allPosts();
+		 model.addAttribute("posts", posts);
+		 model.addAttribute("post", new Post()); // look at this line!
+		 model.addAttribute("user", u);
+		 return "newPost.jsp";
 	 }
 	 
 	 @RequestMapping("/posts/{postId}")
@@ -155,5 +170,17 @@ public class MainController {
 	 // 1. the way we did it here
 	 // 2. get rid of <form> and just make the form: hidden a  input type=hidden with "name" instead of "path" && and then do @RequestParam in the controller and target the "name" 
 	 // 3. @PathVariable and have action="/comment/{postId}
+	 
+	 @RequestMapping("/home")
+	 public String index(HttpSession session, Model model) {
+	     // get user from session, save them in the model and return the home page
+		 Long userId = (Long) session.getAttribute("userId");
+		 User u = userService.findUserById(userId);
+		 List<Post> posts = postService.allPosts();
+		 model.addAttribute("posts", posts);
+		 model.addAttribute("post", new Post()); // look at this line!
+		 model.addAttribute("user", u);
+		 return "homePage.jsp";
+	 }
 }
 

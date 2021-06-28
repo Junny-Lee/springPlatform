@@ -18,6 +18,10 @@
 <!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 </head>
 <body>
+	<div id="navbar">
+		<a href="/logout" class="aTags">Log out</a>
+	</div>
+	<h2 id="logo"><a href="/" id="logoTag">My Journey</a></h2>
 	<form:form action="/posts/${post.id}/process" method="post" modelAttribute="post" id="newForm">
 		<%-- <form:hidden value="${post.creator}" path="creator"/> --%>
 		<input type="hidden" name="_method" value="put">
